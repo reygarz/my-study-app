@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заметки</title>
+    <title>Дедлайны</title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -16,12 +16,13 @@
     </nav>
 
     <div class="container">
-        <h1>Заметки</h1>
-        <textarea id="noteInput" placeholder="Напишите свои заметки здесь..."></textarea>
-        <button onclick="saveNote()">Сохранить заметку</button>
+        <h1>Дедлайны</h1>
+        <input type="text" id="taskInput" placeholder="Название задания">
+        <input type="date" id="dateInput">
+        <button onclick="addDeadline()">Добавить</button>
 
-        <h2>Сохраненные заметки:</h2>
-        <div id="savedNotes" class="card"></div>
+        <h2>Список дедлайнов:</h2>
+        <div id="deadlines" class="card"></div>
     </div>
 
     <script src="assets/script.js"></script>

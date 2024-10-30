@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<nav>
-    <a href="index.html">Расписание</a> |
-    <a href="notes.html">Заметки</a> |
-    <a href="deadlines.html">Дедлайны</a>
-</nav>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,11 +7,20 @@
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h1>Заметки</h1>
-    <textarea id="noteInput" placeholder="Напишите свои заметки здесь..."></textarea>
-    <button onclick="saveNote()">Сохранить заметку</button>
-    <h2>Сохраненные заметки:</h2>
-    <div id="savedNotes"></div>
+    <nav>
+        <a href="index.html">Расписание</a> |
+        <a href="notes.html">Заметки</a> |
+        <a href="deadlines.html">Дедлайны</a>
+    </nav>
+
+    <div class="container">
+        <h1>Заметки</h1>
+        <textarea id="noteInput" placeholder="Напишите свои заметки здесь..."></textarea>
+        <button onclick="saveNote()">Сохранить заметку</button>
+        
+        <h2>Сохраненные заметки:</h2>
+        <div id="savedNotes"></div>
+    </div>
 
     <script src="assets/script.js"></script>
 </body>

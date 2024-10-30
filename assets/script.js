@@ -26,7 +26,7 @@ function loadICSFile(event) {
                     date: date,
                     day: day.charAt(0).toUpperCase() + day.slice(1),
                     subject: summary,
-                    type: 'Тип неизвестен, скоро допилю', // Можно изменить тип, если будет известно
+                    type: '!Тип неизвестен!', // Можно изменить тип, если будет известно
                     attended: false
                 };
             });

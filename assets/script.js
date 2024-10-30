@@ -188,3 +188,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById('homeworkList')) displayHomework();
     if (document.getElementById('fileList')) displayFiles();
 });
+
+

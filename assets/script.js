@@ -26,7 +26,7 @@ function loadICSFile(event) {
                     date: date,
                     day: day.charAt(0).toUpperCase() + day.slice(1),
                     subject: summary,
-                    type: 'Лекция', // Можно изменить тип, если будет известно
+                    type: 'Тип неизвестен, скоро допилю', // Можно изменить тип, если будет известно
                     attended: false
                 };
             });
@@ -49,7 +49,7 @@ function renderSchedule() {
             </div>
             <div>
                 <button class="status-btn ${item.attended ? 'status-attended' : 'status-missed'}" onclick="toggleAttendance(${index})">
-                    ${item.attended ? 'Посетил' : 'Не посетил'}
+                    ${item.attended ? 'Посещение' : 'Пропуск'}
                 </button>
             </div>
         </div>

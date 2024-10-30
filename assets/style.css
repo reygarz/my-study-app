@@ -235,4 +235,81 @@ pre {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+    /* Общие настройки для текста и контейнеров */
+body, .container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Контейнер конспектов */
+.container {
+    max-width: 100%;
+    padding: 1rem;
+}
+
+/* Устанавливаем размер текста и ширину на мобильных устройствах */
+@media (max-width: 768px) {
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+    }
+
+    /* Уменьшаем поля и делаем текст адаптивным */
+    h1, h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+
+    textarea, #searchInput {
+        width: 100%;
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    #savedSummaries {
+        padding: 1rem;
+        width: 100%;
+        font-size: 1rem;
+        overflow-wrap: break-word;
+    }
+
+    /* Стили для текста конспектов */
+    .summary-item p {
+        font-size: 1rem;
+        line-height: 1.5;
+        word-wrap: break-word;
+    }
+}
+
+/* Более узкий экран */
+@media (max-width: 480px) {
+    h1, h2 {
+        font-size: 1.3rem;
+    }
+
+    nav a {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 0.5rem;
+    }
+
+    textarea, #searchInput {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+    }
+
+    #savedSummaries {
+        font-size: 0.9rem;
+    }
+}
 }

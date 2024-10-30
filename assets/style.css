@@ -235,22 +235,59 @@ pre {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-    /* Общие настройки для текста и контейнеров */
+    /* Основные настройки для текста и контейнера */
 body, .container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, sans-serif;
+    line-height: 1.6;
 }
 
-/* Контейнер конспектов */
+/* Контейнер конспекта */
 .container {
     max-width: 100%;
     padding: 1rem;
 }
 
-/* Устанавливаем размер текста и ширину на мобильных устройствах */
+/* Настройка текста и таблиц */
+h1, h2 {
+    font-size: 1.8rem;
+    text-align: center;
+}
+
+textarea, #searchInput {
+    width: 100%;
+    font-size: 1.1rem;
+    padding: 0.8rem;
+}
+
+/* Стиль для таблиц */
+table {
+    width: 100%;
+    min-width: 300px; /* Минимальная ширина, чтобы таблицы не сжимались */
+    border-collapse: collapse;
+    overflow-x: auto;
+    display: block; /* Позволяет горизонтальный скроллинг на маленьких экранах */
+    margin: 1rem 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+/* Адаптивность для маленьких экранов */
 @media (max-width: 768px) {
+    h1, h2 {
+        font-size: 1.5rem;
+    }
+
     nav {
         display: flex;
         flex-direction: column;
@@ -262,34 +299,27 @@ body, .container {
         font-size: 1.2rem;
     }
 
-    /* Уменьшаем поля и делаем текст адаптивным */
-    h1, h2 {
-        font-size: 1.5rem;
-        text-align: center;
+    .container {
+        padding: 0.5rem;
     }
 
     textarea, #searchInput {
-        width: 100%;
         font-size: 1rem;
-        padding: 0.8rem;
+        padding: 0.5rem;
     }
 
     #savedSummaries {
         padding: 1rem;
-        width: 100%;
         font-size: 1rem;
-        overflow-wrap: break-word;
     }
 
-    /* Стили для текста конспектов */
-    .summary-item p {
-        font-size: 1rem;
-        line-height: 1.5;
-        word-wrap: break-word;
+    /* Горизонтальный скролл для таблиц на маленьких экранах */
+    table {
+        width: auto;
     }
 }
 
-/* Более узкий экран */
+/* Узкие экраны (480px и меньше) */
 @media (max-width: 480px) {
     h1, h2 {
         font-size: 1.3rem;
@@ -297,10 +327,6 @@ body, .container {
 
     nav a {
         font-size: 1rem;
-    }
-
-    .container {
-        padding: 0.5rem;
     }
 
     textarea, #searchInput {

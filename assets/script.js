@@ -212,5 +212,20 @@ document.addEventListener("DOMContentLoaded", function() {
     searchInput.placeholder = "Поиск по конспекту..."; // Текст подсказки
     searchInput.addEventListener("input", searchOnPage); // Добавляем обработчик событий на ввод текста
     document.body.insertBefore(searchInput, document.body.firstChild); // Вставляем поле поиска в начало body
-});
+    // Функция для поиска и подсветки текста на странице
+function searchInSummary() {
+    const searchInput = document.getElementById("searchInput").value.toLowerCase();
+    const summaries = document.querySelectorAll("#savedSummaries .summary-item p");
+
+    summaries.forEach(summary => {
+        // Удаляем предыдущие подсветки
+        summary.innerHTML = summary.textContent;
+        
+        // Подсвечиваем текст, если найдено совпадение
+        if (searchInput) {
+            const regex = new RegExp(`(${searchInput})`, "gi");
+            summary.innerHTML = summary.textContent.replace(regex, `<span class="highlight">$1</span>`);
+        }
+    });
+}
 

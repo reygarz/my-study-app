@@ -132,4 +132,65 @@ input[type="text"], input[type="date"], textarea {
 .status-missed {
     background-color: #ff3b30;
 }
+/* Стили для конспектов */
+.container {
+    max-width: 800px; /* Ограничиваем ширину контейнера */
+    margin: 20px auto; /* Центрируем контейнер */
+    padding: 20px;
+    border: 1px solid #ccc; /* Рамка вокруг контейнера */
+    border-radius: 8px; /* Закругление углов */
+    background-color: #f9f9f9; /* Цвет фона */
+}
 
+h1, h2 {
+    color: #333; /* Цвет заголовков */
+    font-family: 'Arial', sans-serif; /* Шрифт для заголовков */
+}
+
+h2 {
+    margin-top: 20px; /* Отступ сверху для заголовков */
+}
+
+textarea {
+    width: 100%; /* Ширина текстовой области */
+    height: 150px; /* Высота текстовой области */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ccc; /* Рамка для текстовой области */
+    border-radius: 4px; /* Закругление углов текстовой области */
+    font-size: 16px; /* Размер шрифта */
+    font-family: 'Arial', sans-serif; /* Шрифт для текстовой области */
+    resize: vertical; /* Позволяем изменять размер только по вертикали */
+}
+
+button {
+    padding: 10px 20px; /* Внутренние отступы для кнопки */
+    background-color: #007bff; /* Цвет фона кнопки */
+    color: white; /* Цвет текста кнопки */
+    border: none; /* Убираем рамку */
+    border-radius: 4px; /* Закругление углов кнопки */
+    cursor: pointer; /* Указатель при наведении */
+    font-size: 16px; /* Размер шрифта кнопки */
+    margin-top: 10px; /* Отступ сверху для кнопки */
+}
+
+button:hover {
+    background-color: #0056b3; /* Цвет кнопки при наведении */
+}
+
+.card {
+    background-color: #fff; /* Цвет фона для карточек */
+    border: 1px solid #ddd; /* Рамка для карточек */
+    border-radius: 4px; /* Закругление углов карточек */
+    padding: 10px; /* Внутренние отступы карточек */
+    margin-top: 10px; /* Отступ сверху для карточек */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Тень для карточек */
+}
+
+pre {
+    background-color: #f2f2f2; /* Цвет фона для блока с кодом */
+    padding: 15px; /* Внутренние отступы */
+    border-radius: 4px; /* Закругление углов */
+    overflow-x: auto; /* Прокрутка по горизонтали при необходимости */
+    white-space: pre-wrap; /* Перенос строк внутри блока */
+    font-family: 'Courier New', monospace; /* Шрифт для блока с кодом */
+}

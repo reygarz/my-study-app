@@ -1,5 +1,4 @@
 /* Основные стили */
-
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f6fa;
+    background-color: #f1f2f6;
     color: #333;
     display: flex;
     justify-content: center;
@@ -16,68 +15,65 @@ body {
 }
 
 /* Навигация */
-
 nav {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin-bottom: 20px;
     text-align: center;
 }
 
 nav a {
     text-decoration: none;
-    color: #2d98da;
+    color: #3867d6;
     font-weight: bold;
     margin: 0 10px;
+    font-size: 1.1em;
 }
 
 nav a:hover {
-    color: #3867d6;
+    color: #2d98da;
 }
 
 /* Заголовки */
-
-h1 {
+h1, h2 {
     text-align: center;
     font-size: 1.8em;
     color: #4b6584;
     margin-bottom: 20px;
 }
 
-/* Карточки для контента */
-
+/* Контейнеры и карточки */
 .container {
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
 }
 
 .card {
     background: white;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
 
-.card h2 {
-    font-size: 1.4em;
-    color: #4b6584;
+.note-item, .deadline-item, .lesson-item {
+    background: #ffffff;
+    border: 1px solid #d1d8e0;
+    padding: 15px;
     margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.card p {
-    font-size: 1em;
-    color: #333;
-}
-
-/* Кнопки и интерактивные элементы */
-
+/* Кнопки */
 button {
     background-color: #2d98da;
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
     transition: background 0.3s;
@@ -87,44 +83,12 @@ button:hover {
     background-color: #3867d6;
 }
 
-input[type="text"], input[type="date"], textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #d1d8e0;
-    border-radius: 4px;
-    font-size: 1em;
-}
-
-/* Стили для заметок, дедлайнов, расписания */
-
-.lesson, .note, .deadline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.lesson button, .note button, .deadline button {
-    background-color: #fc5c65;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    color: white;
-}
-
-.lesson input, .note input, .deadline input {
-    margin-left: 10px;
-    font-size: 0.9em;
-}
-
-/* Стили для кнопок удаления */
-
 .delete-btn {
     background-color: #eb3b5a;
     color: white;
-    border: none;
     padding: 5px 10px;
-    border-radius: 4px;
+    border-radius: 5px;
+    border: none;
     cursor: pointer;
     font-size: 0.9em;
     transition: background 0.3s;
@@ -134,8 +98,52 @@ input[type="text"], input[type="date"], textarea {
     background-color: #fc5c65;
 }
 
-/* Медиа-запросы для адаптивности */
+/* Поля ввода */
+input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #d1d8e0;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
 
+.lesson, .note, .deadline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lesson-item {
+    background-color: #f8f9fd;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* Отчёт о посещениях */
+.report {
+    padding: 15px;
+    background: #ffffff;
+    border: 1px solid #d1d8e0;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.report h2 {
+    font-size: 1.5em;
+    color: #4b6584;
+    margin-bottom: 10px;
+}
+
+.report-item {
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;

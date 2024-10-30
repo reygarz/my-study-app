@@ -222,4 +222,17 @@ pre {
     background-color: yellow;
     font-weight: bold;
 }
+    /* Стиль для строки поиска */
+.search-container {
+    margin: 20px;
+    text-align: center;
+}
+
+#searchInput {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 }

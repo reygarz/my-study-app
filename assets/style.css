@@ -194,3 +194,28 @@ pre {
     white-space: pre-wrap; /* Перенос строк внутри блока */
     font-family: 'Courier New', monospace; /* Шрифт для блока с кодом */
 }
+/* Основные стили для текста конспекта */
+.summary-item {
+    font-size: 1rem; /* Базовый размер текста */
+    line-height: 1.6; /* Интерлиньяж для улучшения читаемости */
+    margin-bottom: 1em;
+}
+
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .summary-item {
+        font-size: 1.1rem; /* Увеличиваем размер текста на мобильных */
+        line-height: 1.8; /* Немного большее расстояние между строками */
+    }
+
+    #searchInput {
+        width: 100%; /* Поле поиска растягивается на всю ширину экрана */
+        font-size: 1rem;
+        padding: 0.5em;
+        margin-bottom: 1em;
+    }
+}

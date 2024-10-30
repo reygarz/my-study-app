@@ -18,11 +18,14 @@
 
     <div class="container">
         <h1>Конспекты</h1>
-        <textarea id="summaryInput" placeholder="Введите текст конспекта здесь..."></textarea>
-        <button onclick="saveSummary()">Сохранить конспект</button>
+         <!-- Строка поиска для информации на странице -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Поиск по конспекту..." oninput="searchInSummary()">
+        </div>
 
-        <h2>Сохраненные конспекты:</h2>
-        <div id="savedSummaries" class="card"></div>
+        <!-- Отображение конспектов -->
+        <div id="savedSummaries" class="card">
+            <div class="summary-item">
         
         <h2>Конспект по Булевой Алгебре и Логическим Функциям</h2>
         <pre>

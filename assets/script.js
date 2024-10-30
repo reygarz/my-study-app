@@ -1,9 +1,23 @@
-function loadICSFile(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const data = e.target.result;
+// Функция для получения номера текущей недели
+function getWeekNumber(date) {
+    const startDate = new Date(date.getFullYear(), 0, 1);
+    const days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+    return Math.ceil((days + startDate.getDay() + 1) / 7);
+}
+
+// Функция для загрузки соответствующего файла календаря
+function loadCalendar() {
+    const weekNumber = getWeekNumber(new Date());
+    const fileName = weekNumber % 2 === 0 ? 'calendar1.ics' : 'calendar2.ics';
+
+    fetch(fileName)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Ошибка загрузки файла: ' + response.statusText);
+            }
+            return response.text();
+        })
+        .then(data => {
             const jCal = ICAL.parse(data);
             const comp = new ICAL.Component(jCal);
             const events = comp.getAllProperties('vevent');
@@ -12,17 +26,27 @@ function loadICSFile(event) {
 
             events.forEach(event => {
                 const summary = event.getFirstPropertyValue('summary');
-                const startDate = event.getFirstPropertyValue('dtstart');
+                const startDate = event.getFirstPropertyValue('dtstart').toString();
                 const lessonItem = document.createElement('div');
                 lessonItem.className = 'lesson-item';
-                lessonItem.innerHTML = `${summary} - ${startDate.toString()}`;
+                lessonItem.innerHTML = ${summary} - ${startDate};
                 scheduleContainer.appendChild(lessonItem);
             });
-        };
-        reader.readAsText(file);
-    }
+        })
+        .catch(error => console.error('Ошибка загрузки календаря:', error));
 }
 
+// Функция для отслеживания посещаемости
+function trackAttendance() {
+    let attendanceCount = localStorage.getItem('attendanceCount') || 0;
+    attendanceCount++;
+    localStorage.setItem('attendanceCount', attendanceCount);
+
+    const attendanceReport = document.getElementById('attendanceReport');
+    attendanceReport.innerHTML = Количество посещений: ${attendanceCount};
+}
+
+// Функция для сохранения заметок
 function saveNote() {
     const noteInput = document.getElementById('noteInput');
     const note = noteInput.value.trim();
@@ -36,6 +60,7 @@ function saveNote() {
     }
 }
 
+// Функция для добавления сроков
 function addDeadline() {
     const taskInput = document.getElementById('taskInput');
     const dateInput = document.getElementById('dateInput');
@@ -46,68 +71,15 @@ function addDeadline() {
         const deadlinesContainer = document.getElementById('deadlines');
         const deadlineItem = document.createElement('div');
         deadlineItem.className = 'deadline-item';
-        deadlineItem.innerHTML =ge="loadICSFile(event
+        deadlineItem.innerHTML = ${task} - ${date};
         deadlinesContainer.appendChild(deadlineItem);
         taskInput.value = '';
         dateInput.value = '';
     }
 }
 
-function uploadFile(event) {
-    const fileList = document.getElementById('fileList');
-    const file = event.target.files[0];
-    if (file) {
-        const fileItem = document.createElement('div');
-        fileItem.textContent = file.name;
-        fileList.appendChild(fileItem);
-    }
-}
-// Функция для получения номера текущей недели
-function getWeekNumber(date) {
-    const startDate = new Date(date.getFullYear(), 0, 1);
-    const days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
-    return Math.ceil((days + startDate.getDay() + 1) / 7);
-}
-
-// Функция для загрузки соответствующего файла календаря
-function loadCalendar() {
-    const weekNumber = getWeekNumber(new Date());
-    const fileName = weekNumber % 2 === 0 ? 'calendar1.ics' : 'calendar2.ics';
-    fetch(fileName)
-        .then(response => response.text())
-        .then(data => {
-            const jCal = ICAL.parse(data);
-            const comp = new ICAL.Component(jCal);
-            const events = comp.getAllProperties('vevent');
-            const scheduleContainer = document.getElementById('schedule');
-            scheduleContainer.innerHTML = '';
-
-            events.forEach(event => {
-                const summary = event.getFirstPropertyValue('summary');
-                const startDate = event.getFirstPropertyValue('dtstart');
-                const lessonItem = document.createElement('div');
-                lessonItem.className = 'lesson-item';
-                lessonItem.innerHTML = `${summary} - ${startDate.toString()}`;
-                scheduleContainer.appendChild(lessonItem);
-            });
-        })
-        .catch(error => console.error('Error loading calendar:', error));
-}
-
-// Функция для отслеживания посещаемости
-function trackAttendance() {
-    let attendanceCount = localStorage.getItem('attendanceCount') || 0;
-    attendanceCount++;
-    localStorage.setItem('attendanceCount', attendanceCount);
-
-    const attendanceReport = document.getElementById('attendanceReport');
-    attendanceReport.innerHTML = Date и getWeek().
-        }
-
 // Вызываем функции при загрузке страницы
 document.addEventListener('DOMContentLoaded', () => {
     loadCalendar();
     trackAttendance();
 });
-
-    

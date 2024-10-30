@@ -10,16 +10,18 @@
     <nav>
         <a href="index.html">Расписание</a> |
         <a href="notes.html">Заметки</a> |
-        <a href="deadlines.html">Дедлайны</a>
+        <a href="deadlines.html">Дедлайны</a> |
+        <a href="homework.html">Домашние задания</a> |
+        <a href="uploads.html">Файлы</a>
     </nav>
 
     <div class="container">
         <h1>Заметки</h1>
         <textarea id="noteInput" placeholder="Напишите свои заметки здесь..."></textarea>
         <button onclick="saveNote()">Сохранить заметку</button>
-        
+
         <h2>Сохраненные заметки:</h2>
-        <div id="savedNotes"></div>
+        <div id="savedNotes" class="card"></div>
     </div>
 
     <script src="assets/script.js"></script>

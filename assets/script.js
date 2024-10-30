@@ -52,6 +52,15 @@ function saveNote() {
     displayNotes();
 }
 
+// Удаление заметки
+function deleteNote(index) {
+    let notes = JSON.parse(localStorage.getItem('notes')) || [];
+    notes.splice(index, 1);  // Удаляем заметку по индексу
+    localStorage.setItem('notes', JSON.stringify(notes));
+    displayNotes();
+}
+
+
 // Отображение сохраненных заметок
 function displayNotes() {
     const savedNotesDiv = document.getElementById('savedNotes');
@@ -69,6 +78,12 @@ function addDeadline() {
     const date = document.getElementById('dateInput').value;
     let deadlines = JSON.parse(localStorage.getItem('deadlines')) || [];
     deadlines.push({ task, date });
+    localStorage.setItem('deadlines', JSON.stringify(deadlines));
+    displayDeadlines();
+}
+function deleteDeadline(index) {
+    let deadlines = JSON.parse(localStorage.getItem('deadlines')) || [];
+    deadlines.splice(index, 1);  // Удаляем дедлайн по индексу
     localStorage.setItem('deadlines', JSON.stringify(deadlines));
     displayDeadlines();
 }

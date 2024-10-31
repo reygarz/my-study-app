@@ -26,7 +26,7 @@ function loadICSFile(event) {
                     date: date,
                     day: day.charAt(0).toUpperCase() + day.slice(1),
                     subject: summary,
-                    type: '!Тип неизвестен!', // Можно изменить тип, если будет известно
+                    type: 'Лекция', // Можно изменить тип, если будет известно
                     attended: false
                 };
             });
@@ -49,7 +49,7 @@ function renderSchedule() {
             </div>
             <div>
                 <button class="status-btn ${item.attended ? 'status-attended' : 'status-missed'}" onclick="toggleAttendance(${index})">
-                    ${item.attended ? 'Посещение' : 'Пропуск'}
+                    ${item.attended ? 'Посетил' : 'Не посетил'}
                 </button>
             </div>
         </div>
@@ -187,44 +187,5 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById('deadlines')) displayDeadlines();
     if (document.getElementById('homeworkList')) displayHomework();
     if (document.getElementById('fileList')) displayFiles();
-
-// Функция для поиска по словам на странице
-function searchOnPage() {
-    const searchInput = document.getElementById("searchInput");
-    const filter = searchInput.value.toLowerCase(); // Приводим к нижнему регистру для сравнения
-    const summaryItems = document.querySelectorAll(".summary-item"); // Предположим, что у вас есть элементы с классом .summary-item
-
-    summaryItems.forEach(item => {
-        const textContent = item.textContent || item.innerText; // Получаем текст элемента
-        if (textContent.toLowerCase().indexOf(filter) > -1) {
-            item.style.display = ""; // Показываем элемент, если он соответствует фильтру
-        } else {
-            item.style.display = "none"; // Скрываем элемент, если он не соответствует
-        }
-}
-
-// Добавление слушателя событий на поле ввода
-document.addEventListener("DOMContentLoaded", function() {
-    const searchInput = document.createElement("input"); // Создаем элемент input для поиска
-    searchInput.type = "text"; // Устанавливаем тип поля
-    searchInput.id = "searchInput"; // Устанавливаем ID
-    searchInput.placeholder = "Поиск по конспекту..."; // Текст подсказки
-    searchInput.addEventListener("input", searchOnPage); // Добавляем обработчик событий на ввод текста
-    document.body.insertBefore(searchInput, document.body.firstChild); // Вставляем поле поиска в начало body
-    // Функция для поиска и подсветки текста на странице
-function searchInSummary() {
-    const searchInput = document.getElementById("searchInput").value.toLowerCase();
-    const summaries = document.querySelectorAll("#savedSummaries .summary-item p");
-
-    summaries.forEach(summary => {
-        // Удаляем предыдущие подсветки
-        summary.innerHTML = summary.textContent;
-        
-        // Подсвечиваем текст, если найдено совпадение
-        if (searchInput) {
-            const regex = new RegExp(`(${searchInput})`, "gi");
-            summary.innerHTML = summary.textContent.replace(regex, `<span class="highlight">$1</span>`);
-        }
-    });
-
+});
 

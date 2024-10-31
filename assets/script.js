@@ -201,7 +201,6 @@ function searchOnPage() {
         } else {
             item.style.display = "none"; // Скрываем элемент, если он не соответствует
         }
-    });
 }
 
 // Добавление слушателя событий на поле ввода
@@ -227,5 +226,5 @@ function searchInSummary() {
             summary.innerHTML = summary.textContent.replace(regex, `<span class="highlight">$1</span>`);
         }
     });
-}
+
 

@@ -7,11 +7,15 @@
 </head>
 <body>
     <h1>Вход в GhostLine</h1>
+    <input type="text" id="shortName" placeholder="Уникальное имя">
     <input type="email" id="email" placeholder="Email">
     <input type="password" id="password" placeholder="Пароль">
     <button id="register">Регистрация</button>
     <button id="login">Войти</button>
     <button id="logout" style="display:none;">Выйти</button>
+
+    <h2>Пользователи:</h2>
+    <ul id="usersList"></ul>
 
     <script type="module" src="auth.js"></script>
 </body>

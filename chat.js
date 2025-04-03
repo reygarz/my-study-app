@@ -1,25 +1,51 @@
 import { auth, db } from "./firebase-config.js";
-import { collection, addDoc, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { collection, addDoc, query, orderBy, onSnapshot, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getDoc } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
-const chatContainer = document.getElementById("chatContainer");
+const chatBox = document.getElementById("chatBox");
 const messageInput = document.getElementById("messageInput");
 const sendMessageBtn = document.getElementById("sendMessage");
 const logoutBtn = document.getElementById("logout");
 
 let currentUser = null;
 
-// Функция для загрузки сообщений в реальном времени
+// Функция для форматирования времени
+function formatTime(timestamp) {
+    const date = timestamp.toDate();
+    return date.getHours().toString().padStart(2, "0") + ":" + date.getMinutes().toString().padStart(2, "0");
+}
+
+// Функция загрузки сообщений
 function loadMessages() {
     const messagesQuery = query(collection(db, "chats"), orderBy("timestamp"));
 
     onSnapshot(messagesQuery, (snapshot) => {
-        chatContainer.innerHTML = ""; // Очищаем чат перед загрузкой новых сообщений
+        chatBox.innerHTML = "";
         snapshot.forEach((doc) => {
-            const message = doc.data();
-            const messageElement = document.createElement("p");
-            messageElement.textContent = @${message.sender}: ${message.text};
-            chatContainer.appendChild(messageElement);
+            const messageData = doc.data();
+            const messageElement = document.createElement("div");
+            messageElement.classList.add("message", messageData.senderId === currentUser.uid ? "sent" : "received");
+
+            // Добавляем текст и время
+            messageElement.innerHTML = `
+                <div class="text">@${messageData.sender}: ${messageData.text}</div>
+                <div class="time">${formatTime(messageData.timestamp)}</div>
+            `;
+
+            // Кнопка удаления (если сообщение от текущего пользователя)
+            if (messageData.senderId === currentUser.uid) {
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "❌";
+                deleteButton.classList.add("delete-btn");
+                deleteButton.onclick = async () => {
+                    await deleteDoc(doc(db, "chats", doc.id));
+                };
+                messageElement.appendChild(deleteButton);
+            }
+
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Автопрокрутка вниз
         });
     });
 }
@@ -30,29 +56,30 @@ sendMessageBtn.addEventListener("click", async () => {
     if (text === "" || !currentUser) return;
 
     await addDoc(collection(db, "chats"), {
+        senderId: currentUser.uid,
         sender: currentUser.shortName,
         text: text,
         timestamp: new Date()
     });
 
-    messageInput.value = ""; // Очищаем поле ввода
+    messageInput.value = "";
 });
 
 // Выход из аккаунта
 logoutBtn.addEventListener("click", async () => {
     await signOut(auth);
-    window.location.href = "auth.html"; // Перенаправление на страницу входа
+    window.location.href = "auth.html";
 });
 
-// Проверка авторизации пользователя
+// Проверка авторизации
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         const userDoc = await getDoc(doc(db, "users", user.uid));
         if (userDoc.exists()) {
-            currentUser = userDoc.data();
-            loadMessages(); // Загружаем чат
+            currentUser = { uid: user.uid, shortName: userDoc.data().shortName };
+            loadMessages();
         }
     } else {
-        window.location.href = "auth.html"; // Если не авторизован, перенаправляем на вход
+        window.location.href = "auth.html";
     }
 });
